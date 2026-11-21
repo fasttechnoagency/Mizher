@@ -1,0 +1,1208 @@
+/*
+ * Tailwind v4 entry. Design tokens for Mizher Medical Hub (teal medical palette).
+ * Web fonts are loaded with <link> tags in src/routes/__root.tsx.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "./components/sabina/sabina.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-teal-50: #E6F2F2;
+  --color-teal-100: #CCE5E5;
+  --color-teal-200: #99CBCB;
+  --color-teal-300: #66B2B2;
+  --color-teal-400: #339999;
+  --color-teal-500: #008080;
+  --color-teal-600: #006666;
+  --color-teal-700: #004D4D;
+  --color-teal-800: #003333;
+  --color-teal-900: #001A1A;
+  --color-slate-jordan: #2C3E50;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-payment-surface: hsl(var(--payment-surface));
+  --color-payment-hover: hsl(var(--payment-hover));
+  --color-payment-pressed: hsl(var(--payment-pressed));
+  --color-payment-ink: hsl(var(--payment-ink));
+  --color-payment-border: hsl(var(--payment-border));
+  --color-payment-focus: hsl(var(--payment-focus));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
+
+/* Tailwind v3 compatibility: buttons show a pointer and placeholders keep v3 color */
+@layer base {
+  button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
+  input::placeholder, textarea::placeholder { color: var(--color-gray-400); }
+}
+
+
+@layer base {
+  :root {
+    --background: 180 33% 95%;
+    --foreground: 210 25% 23%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 25% 23%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 25% 23%;
+    --primary: 180 82% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 33% 93%;
+    --secondary-foreground: 210 25% 23%;
+    --muted: 180 20% 95%;
+    --muted-foreground: 210 10% 45%;
+    --accent: 180 50% 90%;
+    --accent-foreground: 180 100% 20%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 180 20% 88%;
+    --input: 180 20% 88%;
+    --ring: 180 100% 25%;
+    --chart-1: 180 100% 25%;
+    --chart-2: 180 60% 40%;
+    --chart-3: 180 40% 55%;
+    --chart-4: 40 80% 60%;
+    --chart-5: 0 70% 60%;
+    --radius: 0.75rem;
+    --payment-surface: 0 0% 100%;
+    --payment-hover: 216 50% 99%;
+    --payment-pressed: 216 40% 96%;
+    --payment-ink: 216 43% 20%;
+    --payment-border: 216 20% 86%;
+    --payment-focus: 215 65% 46%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 210 25% 23%;
+    --sidebar-primary: 180 100% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 33% 93%;
+    --sidebar-accent-foreground: 180 100% 20%;
+    --sidebar-border: 180 20% 88%;
+    --sidebar-ring: 180 100% 25%;
+  }
+
+  .dark {
+    --background: 210 25% 8%;
+    --foreground: 0 0% 95%;
+    --card: 210 25% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 210 25% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 180 80% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 18%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 210 15% 15%;
+    --muted-foreground: 210 10% 55%;
+    --accent: 180 30% 20%;
+    --accent-foreground: 180 60% 70%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 15% 20%;
+    --input: 210 15% 20%;
+    --ring: 180 80% 40%;
+    --chart-1: 180 80% 40%;
+    --chart-2: 180 50% 50%;
+    --chart-3: 180 30% 60%;
+    --chart-4: 40 70% 55%;
+    --chart-5: 0 60% 55%;
+    --payment-surface: 0 0% 100%;
+    --payment-hover: 216 50% 99%;
+    --payment-pressed: 216 40% 96%;
+    --payment-ink: 216 43% 20%;
+    --payment-border: 216 20% 86%;
+    --payment-focus: 215 65% 46%;
+    --sidebar-background: 210 25% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 180 80% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 16%;
+    --sidebar-accent-foreground: 180 60% 70%;
+    --sidebar-border: 210 15% 20%;
+    --sidebar-ring: 180 80% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+}
+
+[dir="ltr"] {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(230, 242, 242, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-white {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Premium card border-light hover */
+.card-border-light {
+  transition: box-shadow 320ms ease, border-color 320ms ease;
+}
+.card-border-light:hover {
+  border-color: hsl(var(--primary) / 0.35);
+  box-shadow: 0 0 0 1px hsl(var(--primary) / 0.18), 0 12px 32px -12px hsl(var(--primary) / 0.28);
+}
+
+/* ===== Living Cosmic Logo (header brand) ===== */
+.living-logo__icon {
+  position: relative;
+  animation: ll-pulse 6s ease-in-out infinite;
+}
+@keyframes ll-pulse {
+  0%, 100% { box-shadow: 0 0 7px 1px rgba(16,162,162,0.28); }
+  50%      { box-shadow: 0 0 15px 4px rgba(0,212,255,0.42); }
+}
+
+/* slow light reflection across the icon surface */
+.living-logo__sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.living-logo__sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 36%, rgba(255,255,255,0.5) 50%, transparent 64%);
+  background-size: 260% 100%;
+  background-position: 200% 0;
+  animation: ll-sweep 7.5s ease-in-out infinite;
+}
+@keyframes ll-sweep {
+  0%   { background-position: 200% 0; opacity: 0; }
+  18%  { opacity: 1; }
+  44%  { background-position: -120% 0; opacity: 1; }
+  52%, 100% { background-position: -120% 0; opacity: 0; }
+}
+
+/* orbital arcs (extend 4px beyond the 32px icon, contained in the 12px gap) */
+.living-logo__orbit {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* wordmark: subtle glow synced to the icon pulse */
+.living-logo__word {
+  position: relative;
+  animation: ll-word-glow 6s ease-in-out infinite;
+}
+@keyframes ll-word-glow {
+  0%, 100% { text-shadow: 0 0 6px rgba(16,162,162,0.14); }
+  50%      { text-shadow: 0 0 10px rgba(0,212,255,0.24); }
+}
+
+/* wordmark: slow traveling cyan sheen (occasional, never flashing) */
+.living-logo__word-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.42) 50%, transparent 100%);
+  background-size: 42% 100%;
+  background-repeat: no-repeat;
+  background-position: -60% 0;
+  mix-blend-mode: screen;
+  animation: ll-word-sheen 8s ease-in-out infinite;
+}
+@keyframes ll-word-sheen {
+  0%   { background-position: -60% 0; opacity: 0; }
+  14%  { opacity: 0.85; }
+  40%  { background-position: 150% 0; opacity: 0.85; }
+  46%, 100% { background-position: 150% 0; opacity: 0; }
+}
+
+/* gentle hover boost (no enlargement, no movement) */
+.living-logo__icon:hover { animation-duration: 4s; }
+.living-logo__word:hover { text-shadow: 0 0 14px rgba(0,212,255,0.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  .living-logo__icon { animation: none; box-shadow: 0 0 6px 1px rgba(16,162,162,0.2); }
+  .living-logo__sheen::before { animation: none; opacity: 0; }
+  .living-logo__word { animation: none; text-shadow: 0 0 6px rgba(16,162,162,0.15); }
+  .living-logo__word-sheen { animation: none; opacity: 0; }
+}
+
+/* ===== Living Hero Logo (login/landing hero) ===== */
+.hero-logo {
+  animation: hero-pulse 6s ease-in-out infinite;
+}
+@keyframes hero-pulse {
+  0%, 100% { box-shadow: 0 0 18px 4px rgba(16,162,162,0.30), 0 0 38px 12px rgba(0,212,255,0.16); }
+  50%      { box-shadow: 0 0 30px 8px rgba(0,212,255,0.45), 0 0 62px 20px rgba(0,212,255,0.24); }
+}
+
+/* light sweep across the illustration, clipped to the circle */
+.hero-logo__sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+.hero-logo__sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.22) 50%, transparent 62%);
+  background-size: 280% 100%;
+  background-position: 200% 0;
+  mix-blend-mode: screen;
+  animation: hero-sweep 8s ease-in-out infinite;
+}
+@keyframes hero-sweep {
+  0%   { background-position: 200% 0; opacity: 0; }
+  18%  { opacity: 1; }
+  46%  { background-position: -120% 0; opacity: 1; }
+  54%, 100% { background-position: -120% 0; opacity: 0; }
+}
+
+/* perimeter highlight + orbital arc overlays */
+.hero-logo__fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+
+/* wordmark: coordinated luminosity pulse */
+.hero-word--lead {
+  animation: hero-word-glow 6s ease-in-out infinite;
+}
+.hero-word--second {
+  animation: hero-word-glow-soft 6s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+@keyframes hero-word-glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(16,162,162,0.50), 0 0 14px rgba(16,162,162,0.22); }
+  50%      { text-shadow: 0 0 9px rgba(0,212,255,0.65), 0 0 22px rgba(0,212,255,0.35), 0 0 38px rgba(0,212,255,0.14); }
+}
+@keyframes hero-word-glow-soft {
+  0%, 100% { text-shadow: 0 0 6px rgba(0,212,255,0.10); }
+  50%      { text-shadow: 0 0 12px rgba(0,212,255,0.24); }
+}
+
+/* "Mizher" traveling cyan sheen (clipped to the glyphs) */
+.hero-word__sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.9) 50%, transparent 100%);
+  background-size: 42% 100%;
+  background-repeat: no-repeat;
+  background-position: -60% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-word-sheen 7s ease-in-out infinite;
+}
+@keyframes hero-word-sheen {
+  0%   { background-position: -60% 0; }
+  20%  { background-position: 160% 0; }
+  100% { background-position: 160% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo { animation: none; box-shadow: 0 0 18px 6px rgba(16,162,162,0.26); }
+  .hero-logo__sweep::before { animation: none; opacity: 0; }
+  .hero-word--lead { animation: none; text-shadow: 0 0 8px rgba(16,162,162,0.25); }
+  .hero-word--second { animation: none; text-shadow: 0 0 8px rgba(0,212,255,0.14); }
+  .hero-word__sheen { animation: none; opacity: 0; }
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: hsl(180, 100%, 25%);
+  z-index: 9999;
+  transition: width 0.1s;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(180, 33%, 95%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(180, 100%, 25%);
+  border-radius: 3px;
+}
+
+/* Shared card entry: identical proportions for inline fields and hosted checkout. */
+@layer components {
+  .payment-action {
+    @apply relative flex w-full min-w-0 items-center justify-center border border-payment-border bg-payment-surface font-body text-payment-ink;
+    container-type: inline-size;
+    height: 55px;
+    padding: 0;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px hsl(var(--payment-ink) / 0.04), 0 4px 12px hsl(var(--primary) / 0.045);
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .payment-action__content {
+    @apply flex h-full w-full min-w-0 items-center justify-center;
+    gap: 20px;
+    padding-inline: 20px;
+    pointer-events: none;
+  }
+
+  .payment-action__label {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 15px;
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .payment-action__brands {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: 28px;
+  }
+
+  .payment-action__brand {
+    display: block;
+    flex: none;
+    height: auto;
+    max-width: none;
+    overflow: visible;
+  }
+
+  .payment-action__brand--visa { width: 52px; }
+  .payment-action__brand--mastercard { width: 44px; }
+
+  /* Keep the custom button visible; let the secure form expand beneath it. */
+  .payment-action-host {
+    @apply relative w-full min-w-0;
+    container-type: inline-size;
+    isolation: isolate;
+  }
+
+  .payment-action__sdk {
+    @apply absolute inset-x-0 top-0 w-full min-w-0;
+    z-index: 1;
+    min-height: 55px;
+    opacity: 0;
+  }
+
+  .payment-action-host--open .payment-action__sdk {
+    position: relative;
+    margin-top: 12px;
+    opacity: 1;
+  }
+
+  .payment-action:focus-visible,
+  .payment-action:focus-within,
+  .payment-action-host:focus-within > .payment-action {
+    border-color: hsl(var(--primary));
+    outline: 3px solid hsl(var(--primary) / 0.22);
+    outline-offset: 3px;
+  }
+
+  .payment-action[data-disabled="false"] { cursor: pointer; }
+
+  .payment-action[data-disabled="false"]:active {
+    background-color: hsl(var(--secondary));
+    border-color: hsl(var(--primary) / 0.65);
+    box-shadow: inset 0 1px 3px hsl(var(--payment-ink) / 0.06);
+  }
+
+  .payment-action[data-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .payment-action-host[data-disabled="true"] .payment-action__sdk {
+    pointer-events: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .payment-action[data-disabled="false"]:hover:not(:active) {
+      background-color: hsl(var(--payment-hover));
+      border-color: hsl(var(--primary) / 0.6);
+      box-shadow: 0 2px 4px hsl(var(--payment-ink) / 0.035), 0 5px 14px hsl(var(--primary) / 0.09);
+    }
+  }
+
+  @container (max-width: 320px) {
+    .payment-action__content { gap: 16px; padding-inline: 16px; }
+    .payment-action__label { font-size: 14px; }
+    .payment-action__brands { gap: 12px; }
+    .payment-action__brand--visa { width: 46px; }
+    .payment-action__brand--mastercard { width: 38px; }
+  }
+
+  @container (max-width: 260px) {
+    .payment-action__content { gap: 10px; padding-inline: 12px; }
+    .payment-action__label { font-size: 13px; }
+    .payment-action__brands { gap: 10px; }
+    .payment-action__brand--visa { width: 40px; }
+    .payment-action__brand--mastercard { width: 34px; }
+  }
+
+  @container (max-width: 215px) {
+    .payment-action__content { gap: 8px; padding-inline: 10px; }
+    .payment-action__label { font-size: 12px; }
+    .payment-action__brands { gap: 8px; }
+    .payment-action__brand--visa { width: 34px; }
+    .payment-action__brand--mastercard { width: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .payment-action { transition: none; }
+  }
+
+  /* ===== Payment method selector (marketplace checkout) ===== */
+  .payment-method {
+    @apply relative flex w-full items-center gap-3 text-start;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 1.5px solid hsl(var(--payment-border));
+    background: hsl(var(--payment-surface));
+    box-shadow: 0 1px 2px hsl(var(--payment-ink) / 0.03);
+    transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .payment-method--active {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.06);
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.12), 0 4px 14px hsl(var(--primary) / 0.08);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .payment-method:hover:not(.payment-method--active) {
+      border-color: hsl(var(--primary) / 0.5);
+      background: hsl(var(--payment-hover));
+    }
+  }
+
+  .payment-method:active { transform: scale(0.992); }
+
+  .payment-badge {
+    @apply flex flex-shrink-0 items-center justify-center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .payment-badge--cash {
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+  }
+
+  .payment-badge--card {
+    background: #ffffff;
+    border: 1px solid hsl(var(--payment-border));
+  }
+
+  .payment-method__title {
+    @apply block text-sm font-semibold leading-tight;
+    color: hsl(var(--foreground));
+    letter-spacing: -0.01em;
+  }
+
+  .payment-method__desc {
+    @apply block text-xs leading-snug mt-0.5;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .payment-method__radio {
+    @apply flex flex-shrink-0 items-center justify-center;
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--payment-border));
+    background: hsl(var(--payment-surface));
+    transition: border-color 180ms ease, background-color 180ms ease;
+  }
+
+  .payment-method--active .payment-method__radio {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--primary));
+  }
+
+  .payment-method__check {
+    @apply flex items-center justify-center text-white;
+  }
+}
+
+/* ===== Fly-to-cart scanner ring rotation ===== */
+@keyframes ftc-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ftc-wrapper .ftc-scanner { animation: none !important; }
+}
+
+/* ===== Medical Holographic Assembly (section scroll-reveal) ===== */
+/* Decorative overlays: a traveling scan beam along the section's top
+   boundary (crisp core + soft halo), a soft ambient assembly sweep behind
+   the content, and a brief top edge glow. All pointer-events:none,
+   aria-hidden, clipped to the section, removed after one play. They only
+   animate their own transform/opacity — never any content element's — so
+   they cannot conflict with existing framer-motion entrances, the search
+   bar, or Fly-to-Cart. */
+.hs-clip-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 20;
+}
+.hs-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hs-scan {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 38%;
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.1) 20%, hsl(var(--primary)) 46%, #ecffff 50%, hsl(var(--primary)) 54%, hsl(var(--primary) / 0.1) 80%, transparent 100%);
+  box-shadow: 0 0 10px 2px hsl(var(--primary) / 0.55), 0 0 22px 6px hsl(var(--primary) / 0.22);
+  transform: translateX(-130%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.hs-scan--play { animation: hs-travel 780ms cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+@keyframes hs-travel {
+  0%   { transform: translateX(-130%); opacity: 0; }
+  12%  { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { transform: translateX(270%); opacity: 0; }
+}
+[dir="rtl"] .hs-scan--play { animation-name: hs-travel-rtl; }
+@keyframes hs-travel-rtl {
+  0%   { transform: translateX(130%); opacity: 0; }
+  12%  { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { transform: translateX(-270%); opacity: 0; }
+}
+.hs-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(180deg, hsl(var(--primary) / 0.12), transparent);
+  opacity: 0;
+  will-change: opacity;
+}
+.hs-edge--play { animation: hs-edge 900ms ease-out forwards; }
+@keyframes hs-edge {
+  0%   { opacity: 0; }
+  22%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+.hs-sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 34%;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.10) 50%, transparent);
+  transform: translateX(-130%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.hs-sweep--play { animation: hs-travel 860ms cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+[dir="rtl"] .hs-sweep--play { animation-name: hs-travel-rtl; }
+@media (prefers-reduced-motion: reduce) {
+  .hs-clip-top,
+  .hs-clip { display: none; }
+}
+
+/* ===== Vital Scan Reveal (VitalScanReveal) ===== */
+.vs { position: relative; }
+.vs__content { position: relative; z-index: 2; }
+.vs__beam {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.2) 20%, hsl(var(--primary)) 46%, #ecffff 50%, hsl(var(--primary)) 54%, hsl(var(--primary) / 0.2) 80%, transparent);
+  box-shadow: 0 0 10px 2px hsl(var(--primary) / 0.5), 0 0 22px 6px hsl(var(--primary) / 0.2);
+}
+.vs__edge {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 90px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, hsl(var(--primary) / 0.12), transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .vs__beam, .vs__edge { display: none; }
+}
+
+/* ===== Title ECG underline ===== */
+.title-ecg { pointer-events: none; opacity: 0.9; margin-top: 2px; }
+
+/* ===== DNA Helix divider ===== */
+.dna-helix { pointer-events: none; opacity: 0.7; }
+
+/* ===== Stethoscope pulse rings ===== */
+.stp-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 60px; height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 9999px;
+  border: 1.5px solid hsl(var(--primary) / 0.5);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: stp-expand 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.stp-ring--2 { animation-delay: 0.7s; border-color: rgba(0,212,255,0.5); }
+@keyframes stp-expand {
+  0%   { transform: scale(0.3); opacity: 0; }
+  20%  { opacity: 0.6; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* ===== Hero boot ECG ===== */
+.boot-ecg {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 14%;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ===== Content scroll-reveal (useScrollReveal) ===== */
+/* Fail-open: the hiding rule only matches when JS sets data-reveal="pending".
+   If JS fails or reduced-motion is on, content stays fully visible. */
+[data-reveal="pending"] { opacity: 0; transform: translateY(32px); will-change: opacity, transform; }
+[data-reveal="pending"][data-reveal-soft] { transform: none; }
+[data-reveal="in"] { opacity: 1; transform: none; transition: opacity 720ms cubic-bezier(0.22, 1, 0.36, 1), transform 720ms cubic-bezier(0.22, 1, 0.36, 1); }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal="pending"] { opacity: 1; transform: none; }
+}
+
+/* ===== Medical Search Bar (hero) — bespoke instrument ===== */
+.msb { position: relative; width: 100%; }
+
+.msb__surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(2px, 0.8cqw, 5px);
+  width: 100%;
+  height: clamp(52px, 5vw, 66px);
+  padding: clamp(4px, 1cqw, 7px) clamp(6px, 1.4cqw, 9px);
+  border-radius: clamp(14px, 3cqw, 20px);
+  background: #ffffff;
+  overflow: hidden;
+  isolation: isolate;
+  container-type: inline-size;
+  box-shadow:
+    0 0 0 1.5px hsl(var(--primary) / 0.35),
+    0 0 clamp(10px, 2.8cqw, 18px) hsl(var(--primary) / 0.14),
+    0 clamp(8px, 2.4cqw, 16px) clamp(16px, 5.2cqw, 32px) rgba(2, 42, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px hsl(var(--primary) / 0.06);
+  transition: box-shadow 280ms ease;
+}
+
+/* Inner top sheen for depth */
+.msb__surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 42%);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.msb__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  box-shadow: 0 0 0 1.5px hsl(var(--primary) / 0.55), 0 0 clamp(14px, 4cqw, 28px) hsl(var(--primary) / 0.28);
+  transition: opacity 260ms ease;
+}
+
+.msb__scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 46%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(var(--primary) / 0.10) 35%,
+    hsl(var(--primary) / 0.30) 50%,
+    hsl(var(--primary) / 0.10) 65%,
+    transparent 100%);
+  will-change: transform, opacity;
+}
+
+.msb__icon-slot,
+.msb__input,
+.msb__motifs,
+.msb__btn-slot {
+  position: relative;
+  z-index: 2;
+}
+
+.msb__icon-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding-inline: clamp(8px, 2cqw, 14px);
+}
+.msb__icon { width: clamp(18px, 1.6vw, 22px); height: clamp(18px, 1.6vw, 22px); color: hsl(var(--primary)); }
+
+.msb__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  padding: 0 clamp(2px, 0.8cqw, 5px);
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: clamp(16px, 1vw + 13px, 18px);
+  line-height: 1.3;
+  color: hsl(var(--foreground));
+}
+.msb__input::placeholder { color: hsl(var(--muted-foreground)); }
+
+/* ── Input field wrapper (hosts the rotating-keyword hint overlay) ── */
+.msb__field {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+}
+.msb__field .msb__input {
+  flex: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Rotating-keyword hint overlay (replaces the static placeholder) ── */
+.msb__hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(3px, 0.8cqw, 8px);
+  padding-inline: clamp(2px, 0.8cqw, 5px);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 220ms ease;
+  will-change: opacity;
+  z-index: 3;
+}
+.msb__hint--hidden { opacity: 0; }
+
+.msb__hint-static {
+  flex: 0 0 auto;
+  font-size: clamp(7px, 2.4cqw, 14px);
+  line-height: 1;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  white-space: nowrap;
+}
+
+.msb__kw-card {
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: clamp(7px, 1.8cqw, 14px);
+  padding-block: clamp(2px, 0.5cqw, 5px);
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--primary) / 0.45);
+  background: linear-gradient(180deg, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.05));
+  color: hsl(var(--primary));
+  font-weight: 600;
+  font-size: clamp(7px, 2.4cqw, 15px);
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow:
+    0 0 0 1px hsl(var(--primary) / 0.08),
+    0 0 clamp(6px, 1.6cqw, 12px) hsl(var(--primary) / 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.msb__kw-card-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 clamp(8px, 2.2cqw, 16px) hsl(var(--primary) / 0.55);
+}
+
+/* Invisible in-flow copy of the current keyword — gives the card its real
+   content width so it never collapses (and feeds the width measurement). */
+.msb__kw-sizer {
+  visibility: hidden;
+  white-space: nowrap;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+/* Roll viewport: absolutely centered over the sizer, clips the vertical
+   roll only. Width follows the card so the word is never clipped between
+   transitions. */
+.msb__kw {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1.5em;
+  transform: translateY(-50%);
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.msb__kw-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+.msb__kw-item--in {
+  animation: msb-kw-in 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.msb__kw-item--out {
+  animation: msb-kw-out 480ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes msb-kw-in {
+  from { opacity: 0; transform: translateY(0.6em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes msb-kw-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-0.6em); }
+}
+
+/* Decorative medical motif zone */
+.msb__motifs {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(58px, 16vw, 96px);
+  width: clamp(58px, 16cqw, 96px);
+  height: clamp(30px, 7cqw, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+.msb__ecg { width: 100%; height: 100%; position: absolute; }
+.msb__ecg-core,
+.msb__ecg-halo,
+.msb__ecg-pulse {
+  fill: none;
+  stroke: hsl(var(--primary));
+  stroke-width: clamp(1.6px, 0.38cqw, 2.4px);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.msb__ecg-core {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: msb-ecg-draw 4.2s ease-in-out infinite;
+}
+.msb__ecg-halo {
+  stroke-width: clamp(3.5px, 0.9cqw, 5.5px);
+  opacity: 0.16;
+  filter: blur(1.5px);
+  animation: msb-ecg-halo 4.2s ease-in-out infinite;
+}
+.msb__ecg-pulse {
+  stroke-width: clamp(2px, 0.45cqw, 2.8px);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 0;
+}
+
+@keyframes msb-ecg-draw {
+  0% { stroke-dashoffset: 100; }
+  45% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 0; }
+}
+@keyframes msb-ecg-halo {
+  0%, 100% { opacity: 0.12; }
+  45% { opacity: 0.38; }
+}
+
+.msb__motif {
+  width: clamp(26px, 6cqw, 36px);
+  height: clamp(26px, 6cqw, 36px);
+  position: absolute;
+  fill: none;
+  stroke: hsl(var(--primary));
+  stroke-width: clamp(1.6px, 0.4cqw, 2.2px);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 clamp(2px, 0.7cqw, 5px) hsl(var(--primary) / 0.22));
+}
+.msb__motif--stetho { animation: msb-motif-a 8s ease-in-out infinite; }
+.msb__motif--dna { animation: msb-motif-b 8s ease-in-out infinite; }
+
+@keyframes msb-motif-a {
+  0%, 38% { opacity: 0.9; }
+  50%, 88% { opacity: 0; }
+  100% { opacity: 0.9; }
+}
+@keyframes msb-motif-b {
+  0%, 38% { opacity: 0; }
+  50%, 88% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+/* Focus treatment */
+.msb[data-focused="true"] .msb__surface {
+  box-shadow:
+    0 0 0 1.5px hsl(var(--primary) / 0.6),
+    0 0 0 4px hsl(var(--primary) / 0.16),
+    0 0 clamp(16px, 4.5cqw, 28px) hsl(var(--primary) / 0.22),
+    0 clamp(8px, 2.4cqw, 16px) clamp(16px, 5.2cqw, 32px) rgba(2, 42, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.msb[data-focused="true"] .msb__glow { opacity: 1; }
+.msb[data-focused="true"] .msb__ecg-halo { animation: none; opacity: 0.5; }
+
+/* Typing: dim decoration, hide secondary motif, keep query dominant */
+.msb[data-typing="true"] .msb__motifs { opacity: 0.35; }
+.msb[data-typing="true"] .msb__motif--stetho,
+.msb[data-typing="true"] .msb__motif--dna { opacity: 0 !important; animation: none; }
+.msb[data-typing="true"] .msb__ecg-core { animation-play-state: paused; }
+
+/* Submission: soft active perimeter illumination */
+.msb[data-scanning="true"] .msb__glow { opacity: 1; }
+
+/* Inset Search button */
+.msb__btn-slot { flex-shrink: 0; padding: 0 clamp(2px, 0.8cqw, 5px); }
+.msb__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1.4cqw, 9px);
+  height: clamp(44px, 4vw, 52px);
+  min-width: 44px;
+  padding-inline: clamp(12px, 1.6vw, 20px);
+  border: none;
+  border-radius: clamp(11px, 2.4cqw, 16px);
+  background: hsl(var(--primary));
+  color: #ffffff;
+  font-size: clamp(13px, 0.9vw + 10px, 15px);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px hsl(var(--primary) / 0.5),
+    0 clamp(4px, 1cqw, 7px) clamp(10px, 2.6cqw, 18px) hsl(var(--primary) / 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: background 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+}
+.msb__btn:hover {
+  background: hsl(var(--primary) / 0.92);
+  box-shadow:
+    0 0 0 1px hsl(var(--primary) / 0.6),
+    0 clamp(5px, 1.3cqw, 9px) clamp(12px, 3.2cqw, 22px) hsl(var(--primary) / 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.msb__btn:active {
+  transform: scale(0.97);
+  box-shadow:
+    0 0 0 1px hsl(var(--primary) / 0.7),
+    inset 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+.msb__arrow { width: clamp(14px, 1.2vw, 18px); height: clamp(14px, 1.2vw, 18px); }
+
+/* Suggestions dropdown */
+.msb__suggest {
+  position: absolute;
+  top: 100%;
+  margin-top: 4px;
+  inset-inline: 0;
+  background: #ffffff;
+  border: 1px solid hsl(var(--primary) / 0.18);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(2, 42, 42, 0.16);
+  z-index: 50;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+}
+.msb__suggest-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: hsl(var(--foreground));
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.msb__suggest-item:hover { background: hsl(var(--primary) / 0.08); color: hsl(var(--primary)); }
+.msb__suggest-icon { width: 14px; height: 14px; color: hsl(var(--primary)); flex-shrink: 0; }
+.msb__suggest-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.msb__suggest-type {
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+  background: hsl(var(--muted));
+  padding: 2px 8px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+/* Pause idle motion when off-screen */
+.msb[data-paused="true"] .msb__ecg-core,
+.msb[data-paused="true"] .msb__ecg-halo,
+.msb[data-paused="true"] .msb__motif--stetho,
+.msb[data-paused="true"] .msb__motif--dna { animation-play-state: paused; }
+
+/* All screen sizes render the identical animation, scaled to the bar width
+   via cqw (vw fallback). No mobile-specific visual rules: same elements,
+   colors, glow, timing and motion on every device. */
+
+/* Reduced motion: static illumination, no moving graphics or sweeps */
+@media (prefers-reduced-motion: reduce) {
+  .msb__ecg-core { animation: none; stroke-dashoffset: 0; }
+  .msb__ecg-halo { animation: none; opacity: 0.25; }
+  .msb__ecg-pulse { animation: none; }
+  .msb__motif--stetho { animation: none; opacity: 0.85; }
+  .msb__motif--dna { animation: none; opacity: 0; }
+  .msb__btn, .msb__arrow { transition: none; }
+  .msb__kw-item--in { animation: none; opacity: 1; transform: none; }
+  .msb__kw-item--out { animation: none; opacity: 0; transform: none; }
+}
